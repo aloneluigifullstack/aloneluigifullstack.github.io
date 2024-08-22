@@ -21,44 +21,44 @@
   <h1> 8. Keras</h1>
 
   <h2> SOLUCIONARIO CODIGO P1</h2>
-  <input type= “ import numpy as np
-  import matplotlib.pyplot as plt
-  
-  # Definir los vectores de longitud (metros) y tiempo (segundos)
-  longitud = np.array([0, 10, 20, 30, 40, 50])  # en metros
-  tiempo = np.array([0, 2, 4, 6, 8, 10])        # en segundos
-  
-  # Calcular la velocidad (metros/segundo)
-  # La velocidad se calcula como el cambio en longitud dividido por el cambio en tiempo
-  velocidad = np.diff(longitud) / np.diff(tiempo)
-  
-  # Graficar la función velocidad en función del tiempo
-  plt.figure(figsize=(10, 6))
-  plt.plot(tiempo[1:], velocidad, marker='o', linestyle='-', color='b')
-  plt.title('Velocidad en función del tiempo')
-  plt.xlabel('Tiempo (s)')
-  plt.ylabel('Velocidad (m/s)')
-  plt.grid(True)
-  plt.show()
-  
-  # Graficar en 3D: Longitud, Tiempo, y Velocidad
-  from mpl_toolkits.mplot3d import Axes3D
-  
-  # Crear una figura 3D
-  fig = plt.figure(figsize=(10, 6))
-  ax = fig.add_subplot(111, projection='3d')
-  
-  # Ajustar las dimensiones de los datos para la gráfica 3D
-  T, V = np.meshgrid(tiempo[1:], velocidad)
-  
-  # Graficar la relación en 3D
-  ax.plot3D(tiempo[1:], longitud[1:], velocidad, marker='o', linestyle='-', color='r')
-  ax.set_title('Gráfico 3D de Velocidad, Longitud y Tiempo')
-  ax.set_xlabel('Tiempo (s)')
-  ax.set_ylabel('Longitud (m)')
-  ax.set_zlabel('Velocidad (m/s)')
-  
-  plt.show() ”>
+  <p>import numpy as np
+    import matplotlib.pyplot as plt
+    
+    # Definir los vectores de longitud (metros) y tiempo (segundos)
+    longitud = np.array([0, 10, 20, 30, 40, 50])  # en metros
+    tiempo = np.array([0, 2, 4, 6, 8, 10])        # en segundos
+    
+    # Calcular la velocidad (metros/segundo)
+    # La velocidad se calcula como el cambio en longitud dividido por el cambio en tiempo
+    velocidad = np.diff(longitud) / np.diff(tiempo)
+    
+    # Graficar la función velocidad en función del tiempo
+    plt.figure(figsize=(10, 6))
+    plt.plot(tiempo[1:], velocidad, marker='o', linestyle='-', color='b')
+    plt.title('Velocidad en función del tiempo')
+    plt.xlabel('Tiempo (s)')
+    plt.ylabel('Velocidad (m/s)')
+    plt.grid(True)
+    plt.show()
+    
+    # Graficar en 3D: Longitud, Tiempo, y Velocidad
+    from mpl_toolkits.mplot3d import Axes3D
+    
+    # Crear una figura 3D
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # Ajustar las dimensiones de los datos para la gráfica 3D
+    T, V = np.meshgrid(tiempo[1:], velocidad)
+    
+    # Graficar la relación en 3D
+    ax.plot3D(tiempo[1:], longitud[1:], velocidad, marker='o', linestyle='-', color='r')
+    ax.set_title('Gráfico 3D de Velocidad, Longitud y Tiempo')
+    ax.set_xlabel('Tiempo (s)')
+    ax.set_ylabel('Longitud (m)')
+    ax.set_zlabel('Velocidad (m/s)')
+    
+    plt.show()</p>
     
 
 </body>
