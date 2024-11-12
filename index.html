@@ -3,100 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Jump Game</title>
+  <style>
+    #footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      padding: 10px;
+      background-color: #f8f8f8;
+    }
+  </style>
 </head>
 <body>
-  <h2></h2> 
-  <h2> ESTUDIANTES DE INGENIERIA DE SOFTWARE </h2> 
-  <h2> INSTRUCTOR LUIGI RODRIGUEZ</h2> 
-  <a href="https://ibb.co/S6pZTtX"><img src="https://i.ibb.co/nwSK27s/senati.jpg" alt="senati" border="0"></a>
-  <h2> SOLUCIONARIO</h2>
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
+  <div id="footer">Creado por aloneluigifullstack - SENATI 2024</div>
 
-  <h1> 1. Manipulación- Análisis </h1>
-  <h1> 2. Facebook</h1> 
-  <h1> 3. Portable </h1>
-  <h1> 4. Redes Neuronales </h1>
-  <h1> 5. Puntos de entrada de datos</h1>
-  <h1> 6. VERDADERO</h1>
-  <h1> 7. Matplotlib</h1>
-  <h1> 8. Keras</h1>
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
-  <h2> SOLUCIONARIO CODIGO P1</h2>
-  <pre><code>
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
-    
-    # Definir los vectores de longitud (metros) y tiempo (segundos)
-    longitud = np.array([0, 10, 20, 30, 40, 50])  # en metros
-    tiempo = np.array([0, 2, 4, 6, 8, 10])        # en segundos
-    
-    # Calcular la velocidad (metros/segundo)
-    velocidad = np.diff(longitud) / np.diff(tiempo)
-    
-    # Graficar la función velocidad en función del tiempo
-    plt.figure(figsize=(10, 6))
-    plt.plot(tiempo[1:], velocidad, marker='o', linestyle='-', color='b')
-    plt.title('Velocidad en función del tiempo')
-    plt.xlabel('Tiempo (s)')
-    plt.ylabel('Velocidad (m/s)')
-    plt.grid(True)
-    plt.show()
-    
-    # Graficar en 3D: Longitud, Tiempo, y Velocidad
-    
-    
-    fig = plt.figure(figsize=(10, 6))
-    ax = fig.add_subplot(111, projection='3d')
-    ax.plot3D(tiempo[1:], longitud[1:], velocidad, marker='o', linestyle='-', color='r')
-    ax.set_title('Gráfico 3D de Velocidad, Longitud y Tiempo')
-    ax.set_xlabel('Tiempo (s)')
-    ax.set_ylabel('Longitud (m)')
-    ax.set_zlabel('Velocidad (m/s)')
-    plt.show()
-        </code></pre>
-  
-  
-  <h2> SOLUCIONARIO CODIGO P2</h2>
-  <pre><code>
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
-    
-    # Definir el vector de radios en cm (mínimo 5 datos)
-    radios = np.array([1, 2, 3, 4, 5, 6])  # Ejemplo: Radios en centímetros
-    
-    # Definir el valor de Pi
-    pi = 3.1416
-    
-    # Calcular el área para diferentes radios
-    areas = pi * (radios ** 2)
-    
-    # Graficar la función Área en función de los radios en 2D
-    plt.figure(figsize=(10, 6))
-    plt.plot(radios, areas, marker='o', linestyle='-', color='g')
-    plt.title('Área en función del Radio')
-    plt.xlabel('Radio (cm)')
-    plt.ylabel('Área (cm²)')
-    plt.grid(True)
-    plt.show()
-    
-    # Graficar en 3D: Radio y Área
-    fig = plt.figure(figsize=(10, 6))
-    ax = fig.add_subplot(111, projection='3d')
-    
-    # Ajustar las dimensiones de los datos para la gráfica 3D
-    R, A = np.meshgrid(radios, areas)
-    
-    # Graficar la relación en 3D
-    ax.plot3D(radios, areas, areas, marker='o', linestyle='-', color='b')
-    ax.set_title('Gráfico 3D de Radio y Área')
-    ax.set_xlabel('Radio (cm)')
-    ax.set_ylabel('Área (cm²)')
-    ax.set_zlabel('Área (cm²)')
-    
-    plt.show()
-    
-  </code></pre>
+    const player = {
+      x: 50,
+      y: canvas.height - 50,
+      width: 30,
+      height: 30,
+      velocityY: 0,
+      jumping: false,
+    };
+
+    const gravity = 0.6;
+    const jumpStrength = 15;
+    const groundHeight = 20;
+
+    let obstacles = [];
+    const obstacleWidth = 20;
+    const obstacleHeight = 30;
+    const obstacleSpeed = -3;
+    let spawnInterval = 150; // Intervalo de aparición inicial
+    let frameCounter = 0;
+
+    let gameover = false;
+    let score = 0;
+    let gameStarted = false;
+    let isAnimating = false;
+    let startTime = null;
+    let difficultyIncreaseTime = 30000; // Tiempo en milisegundos (30 segundos) para incrementar la dificultad
+
+    function drawPlayer() {
+      ctx.fillStyle = "red";
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+    }
+
+    function jump() {
+      if (!player.jumping) {
+        player.velocityY = -jumpStrength;
+        player.jumping = true;
+      }
+    }
+
+    function createObstacle() {
+      const obstacle = {
+        x: canvas.width,
+        y: canvas.height - groundHeight - obstacleHeight,
+        passed: false
+      };
+      obstacles.push(obstacle);
+    }
+
+    function drawObstacles() {
+      ctx.fillStyle = "green";
+      for (const obstacle of obstacles) {
+        ctx.fillRect(obstacle.x, obstacle.y, obstacleWidth, obstacleHeight);
+      }
+    }
+
+    function checkCollision() {
+      for (const obstacle of obstacles) {
+        if (
+          player.x + player.width >= obstacle.x &&
+          player.x <= obstacle.x + obstacleWidth &&
+          player.y + player.height >= obstacle.y
+        ) {
+          gameover = true;
+          isAnimating = false;
+          break;
+        }
+      }
+    }
+
+    function restartGame() {
+      obstacles = [];
+      player.y = canvas.height - groundHeight - player.height;
+      player.velocityY = 0;
+      player.jumping = false;
+      gameover = false;
+      score = 0;
+      frameCounter = 0;
+      gameStarted = false;
+      isAnimating = false;
+      startTime = null;
+      spawnInterval = 150; // Reiniciar intervalo inicial
+      difficultyIncreaseTime = 30000; // Reiniciar el tiempo para aumentar la dificultad
+    }
+
+    function update() {
+      if (!isAnimating) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (!gameStarted) {
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("Presiona espacio para comenzar", canvas.width / 2 - 200, canvas.height / 2);
+        return;
+      }
+
+      if (startTime === null) startTime = Date.now();
+      const elapsed = Date.now() - startTime;
+      const minutes = Math.floor(elapsed / 60000);
+      const seconds = Math.floor((elapsed % 60000) / 1000);
+
+      // Reducir el intervalo de aparición de obstáculos cada 30 segundos
+      if (elapsed >= difficultyIncreaseTime) {
+        spawnInterval = Math.max(50, spawnInterval - 20); // Reducir el intervalo con un mínimo de 50
+        difficultyIncreaseTime += 30000; // Configurar el próximo aumento de dificultad a 30 segundos después
+      }
+
+      player.velocityY += gravity;
+      player.y += player.velocityY;
+
+      if (player.y > canvas.height - groundHeight - player.height) {
+        player.y = canvas.height - groundHeight - player.height;
+        player.jumping = false;
+      }
+
+      obstacles.forEach((obstacle) => {
+        obstacle.x += obstacleSpeed;
+      });
+
+      frameCounter++;
+      if (frameCounter >= spawnInterval) {
+        createObstacle();
+        frameCounter = 0;
+      }
+
+      obstacles = obstacles.filter((obstacle) => {
+        if (obstacle.x + obstacleWidth > 0) {
+          if (obstacle.x + obstacleWidth < player.x && !obstacle.passed) {
+            score++;
+            obstacle.passed = true;
+          }
+          return true;
+        }
+        return false;
+      });
+
+      checkCollision();
+
+      drawPlayer();
+      drawObstacles();
+
+      if (gameover) {
+        ctx.font = "40px Arial";
+        ctx.fillStyle = "red";
+        ctx.fillText("Game Over", canvas.width / 2 - 100, canvas.height / 2);
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(`Puntaje: ${score}`, canvas.width / 2 - 50, canvas.height / 2 + 50);
+        return;
+      }
+
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "black";
+      ctx.fillText(`Puntaje: ${score}`, 20, 30);
+
+      // Mostrar tiempo en la esquina superior derecha
+      ctx.fillText(`Tiempo: ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, canvas.width - 150, 30);
+
+      requestAnimationFrame(update);
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.keyCode === 32) {
+        if (!gameStarted) {
+          gameStarted = true;
+          isAnimating = true;
+          update();
+        }
+        jump();
+      }
+    });
+
+    if (!isAnimating) {
+      isAnimating = true;
+      update();
+    }
+  </script>
 </body>
 </html>
