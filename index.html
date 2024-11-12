@@ -1,95 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loading Circular</title>
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-  }
-
-  .loader-wrapper {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    /*background-color: #ffffff;*/
-    border: 4px solid #3498db;
-    overflow: hidden;
-  }
-
-  .loader {
-    border-radius: 80%;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    left: 0;
-    animation: progress 3s linear infinite;
-    box-sizing: border-box;
-    border: 10px solid transparent; /* Borde transparente */
-    border-top-color: #3498db; /* Borde azul en la parte superior */
-  }
-
-  .loader-text {
-    position: absolute;
-    font-size: 18px;
-    color: #3498db;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  @keyframes progress {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-<div class="loader-wrapper" id="loaderWrapper">
-  <div class="loader"></div>
-  <div class="loader-text">0%</div>
-</div>
+  <h2></h2> 
+  <h2> ESTUDIANTES DE INGENIERIA DE SOFTWARE </h2> 
+  <h2> INSTRUCTOR LUIGI RODRIGUEZ</h2> 
+  <a href="https://ibb.co/S6pZTtX"><img src="https://i.ibb.co/nwSK27s/senati.jpg" alt="senati" border="0"></a>
+  <h2> SOLUCIONARIO</h2>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const loaderWrapper = document.getElementById("loaderWrapper");
-    const loader = document.querySelector(".loader");
-    const loaderText = document.querySelector(".loader-text");
-    let progress = 0;
+  <h1> 1. Manipulación- Análisis </h1>
+  <h1> 2. Facebook</h1> 
+  <h1> 3. Portable </h1>
+  <h1> 4. Redes Neuronales </h1>
+  <h1> 5. Puntos de entrada de datos</h1>
+  <h1> 6. VERDADERO</h1>
+  <h1> 7. Matplotlib</h1>
+  <h1> 8. Keras</h1>
 
-    function updateProgress() {
-      progress += 1;
-      loader.style.transform = `rotate(${progress * 3.6}deg)`; // 1% = 3.6deg
-      loaderText.textContent = progress + "%";
-      if (progress < 100) {
-        setTimeout(updateProgress, 30); // Actualiza cada 30 milisegundos
-      } else {
-        loaderWrapper.classList.add("hidden");
-      }
-    }
-
-    // Inicia la actualización del progreso
-    setTimeout(updateProgress, 30); // Comienza después de 30 milisegundos
-  });
-</script>
+  <h2> SOLUCIONARIO CODIGO P1</h2>
+  <pre><code>
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    
+    # Definir los vectores de longitud (metros) y tiempo (segundos)
+    longitud = np.array([0, 10, 20, 30, 40, 50])  # en metros
+    tiempo = np.array([0, 2, 4, 6, 8, 10])        # en segundos
+    
+    # Calcular la velocidad (metros/segundo)
+    velocidad = np.diff(longitud) / np.diff(tiempo)
+    
+    # Graficar la función velocidad en función del tiempo
+    plt.figure(figsize=(10, 6))
+    plt.plot(tiempo[1:], velocidad, marker='o', linestyle='-', color='b')
+    plt.title('Velocidad en función del tiempo')
+    plt.xlabel('Tiempo (s)')
+    plt.ylabel('Velocidad (m/s)')
+    plt.grid(True)
+    plt.show()
+    
+    # Graficar en 3D: Longitud, Tiempo, y Velocidad
+    
+    
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot3D(tiempo[1:], longitud[1:], velocidad, marker='o', linestyle='-', color='r')
+    ax.set_title('Gráfico 3D de Velocidad, Longitud y Tiempo')
+    ax.set_xlabel('Tiempo (s)')
+    ax.set_ylabel('Longitud (m)')
+    ax.set_zlabel('Velocidad (m/s)')
+    plt.show()
+        </code></pre>
+  
+  
+  <h2> SOLUCIONARIO CODIGO P2</h2>
+  <pre><code>
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    
+    # Definir el vector de radios en cm (mínimo 5 datos)
+    radios = np.array([1, 2, 3, 4, 5, 6])  # Ejemplo: Radios en centímetros
+    
+    # Definir el valor de Pi
+    pi = 3.1416
+    
+    # Calcular el área para diferentes radios
+    areas = pi * (radios ** 2)
+    
+    # Graficar la función Área en función de los radios en 2D
+    plt.figure(figsize=(10, 6))
+    plt.plot(radios, areas, marker='o', linestyle='-', color='g')
+    plt.title('Área en función del Radio')
+    plt.xlabel('Radio (cm)')
+    plt.ylabel('Área (cm²)')
+    plt.grid(True)
+    plt.show()
+    
+    # Graficar en 3D: Radio y Área
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # Ajustar las dimensiones de los datos para la gráfica 3D
+    R, A = np.meshgrid(radios, areas)
+    
+    # Graficar la relación en 3D
+    ax.plot3D(radios, areas, areas, marker='o', linestyle='-', color='b')
+    ax.set_title('Gráfico 3D de Radio y Área')
+    ax.set_xlabel('Radio (cm)')
+    ax.set_ylabel('Área (cm²)')
+    ax.set_zlabel('Área (cm²)')
+    
+    plt.show()
+    
+  </code></pre>
 </body>
 </html>
-
