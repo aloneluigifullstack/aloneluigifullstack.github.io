@@ -1,107 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instructores de Ingeniería de Software</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Iconos (FontAwesome CDN) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Estilos personalizados -->
+  <style>
+    body {
+      background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://i.ibb.co/cXxRDS95/Whats-App-Image-2025-04-19-at-9-45-36-AM.jpg') no-repeat center center fixed;
+      background-size: cover;
+      padding: 20px;
+    }
+
+    .content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+    }
+
+    h2, h1 {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .social-icons {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 30px;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #007bff;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h2></h2> 
-  <h2> INSTRUCTORES DE INGENIERIA DE SOFTWARE </h2> 
-  <h2> INSTRUCTOR LUIGI RODRIGUEZ</h2> 
-  <a href="https://ibb.co/0FTSS1d"><img src="https://i.ibb.co/xfW00wR/414860962-10162148044873825-8749297437202652443-n.jpg" alt="414860962-10162148044873825-8749297437202652443-n" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
-  <h2> ESTUDIANTES DE SEMESTRE 202510- CURSO: INTRODUCCION Y COMPETENCIAS DIGITALES</h2> 
-  <h2> LABORATORIO</h2> 
-  <a href="https://ibb.co/QjXhr3VB"><img src="https://i.ibb.co/cXxRDS95/Whats-App-Image-2025-04-19-at-9-45-36-AM.jpg" alt="Whats-App-Image-2025-04-19-at-9-45-36-AM" border="0"></a>
-  <h2> GHIBLI</h2> 
-  <a href="https://ibb.co/vCxYRbHr"><img src="https://i.ibb.co/ds0gxSr3/Chat-GPT-Image-26-abr-2025-09-25-38-a-m.png" alt="Chat-GPT-Image-26-abr-2025-09-25-38-a-m" border="0"></a>
-  <h2> SOLUCIONARIO</h2>
 
-  <h1> 1. Manipulación- Análisis </h1>
-  <h1> 2. Facebook</h1> 
-  <h1> 3. Portable </h1>
-  <h1> 4. Redes Neuronales </h1>
-  <h1> 5. Puntos de entrada de datos</h1>
-  <h1> 6. VERDADERO</h1>
-  <h1> 7. Matplotlib</h1>
-  <h1> 8. Keras</h1>
+  <div class="container content">
+    <h2>INSTRUCTORES DE INGENIERIA DE SOFTWARE</h2>
+    <h2>INSTRUCTOR LUIGI RODRIGUEZ</h2>
+    <div class="text-center">
+      <img src="https://i.ibb.co/xfW00wR/414860962-10162148044873825-8749297437202652443-n.jpg" class="img-fluid rounded" alt="Instructor">
+    </div>
 
-  <h2> SOLUCIONARIO CODIGO P1</h2>
-  <pre><code>
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
-    
-    # Definir los vectores de longitud (metros) y tiempo (segundos)
-    longitud = np.array([0, 10, 20, 30, 40, 50])  # en metros
-    tiempo = np.array([0, 2, 4, 6, 8, 10])        # en segundos
-    
-    # Calcular la velocidad (metros/segundo)
-    velocidad = np.diff(longitud) / np.diff(tiempo)
-    
-    # Graficar la función velocidad en función del tiempo
-    plt.figure(figsize=(10, 6))
-    plt.plot(tiempo[1:], velocidad, marker='o', linestyle='-', color='b')
-    plt.title('Velocidad en función del tiempo')
-    plt.xlabel('Tiempo (s)')
-    plt.ylabel('Velocidad (m/s)')
-    plt.grid(True)
-    plt.show()
-    
-    # Graficar en 3D: Longitud, Tiempo, y Velocidad
-    
-    
-    fig = plt.figure(figsize=(10, 6))
-    ax = fig.add_subplot(111, projection='3d')
-    ax.plot3D(tiempo[1:], longitud[1:], velocidad, marker='o', linestyle='-', color='r')
-    ax.set_title('Gráfico 3D de Velocidad, Longitud y Tiempo')
-    ax.set_xlabel('Tiempo (s)')
-    ax.set_ylabel('Longitud (m)')
-    ax.set_zlabel('Velocidad (m/s)')
-    plt.show()
-        </code></pre>
-  
-  
-  <h2> SOLUCIONARIO CODIGO P2</h2>
-  <pre><code>
-    import numpy as np
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
-    
-    # Definir el vector de radios en cm (mínimo 5 datos)
-    radios = np.array([1, 2, 3, 4, 5, 6])  # Ejemplo: Radios en centímetros
-    
-    # Definir el valor de Pi
-    pi = 3.1416
-    
-    # Calcular el área para diferentes radios
-    areas = pi * (radios ** 2)
-    
-    # Graficar la función Área en función de los radios en 2D
-    plt.figure(figsize=(10, 6))
-    plt.plot(radios, areas, marker='o', linestyle='-', color='g')
-    plt.title('Área en función del Radio')
-    plt.xlabel('Radio (cm)')
-    plt.ylabel('Área (cm²)')
-    plt.grid(True)
-    plt.show()
-    
-    # Graficar en 3D: Radio y Área
-    fig = plt.figure(figsize=(10, 6))
-    ax = fig.add_subplot(111, projection='3d')
-    
-    # Ajustar las dimensiones de los datos para la gráfica 3D
-    R, A = np.meshgrid(radios, areas)
-    
-    # Graficar la relación en 3D
-    ax.plot3D(radios, areas, areas, marker='o', linestyle='-', color='b')
-    ax.set_title('Gráfico 3D de Radio y Área')
-    ax.set_xlabel('Radio (cm)')
-    ax.set_ylabel('Área (cm²)')
-    ax.set_zlabel('Área (cm²)')
-    
-    plt.show()
-    
-  </code></pre>
+    <h2>ESTUDIANTES DE SEMESTRE 202510 - CURSO: INTRODUCCION Y COMPETENCIAS DIGITALES</h2>
+    <h2>LABORATORIO</h2>
+    <div class="text-center">
+      <img src="https://i.ibb.co/cXxRDS95/Whats-App-Image-2025-04-19-at-9-45-36-AM.jpg" class="img-fluid rounded" alt="Laboratorio">
+    </div>
+
+    <h2>GHIBLI</h2>
+    <div class="text-center">
+      <img src="https://i.ibb.co/ds0gxSr3/Chat-GPT-Image-26-abr-2025-09-25-38-a-m.png" class="img-fluid rounded" alt="Ghibli">
+    </div>
+
+    <h2>ESTUDIANTES PT 30- CURSO DE MATEMATICAS</h2>
+    <div class="text-center">
+      <a href="https://ibb.co/23kKjvQh"><img src="https://i.ibb.co/N2yYL9PC/Whats-App-Image-2025-05-22-at-3-34-24-PM.jpg" alt="Whats-App-Image-2025-05-22-at-3-34-24-PM" border="0"></a>
+    </div>
+
+    <h2>SOLUCIONARIO</h2>
+    <h1>1. Manipulación - Análisis</h1>
+    <h1>2. Facebook</h1>
+    <h1>3. Portable</h1>
+    <h1>4. Redes Neuronales</h1>
+    <h1>5. Puntos de entrada de datos</h1>
+    <h1>6. VERDADERO</h1>
+    <h1>7. Matplotlib</h1>
+    <h1>8. Keras</h1>
+
+    <h2>SOLUCIONARIO CODIGO P1</h2>
+    <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Definir los vectores de longitud (metros) y tiempo (segundos)
+longitud = np.array([0, 10, 20, 30, 40, 50])  # en metros
+tiempo = np.array([0, 2, 4, 6, 8, 10])        # en segundos
+
+# Calcular la velocidad (metros/segundo)
+velocidad = np.diff(longitud) / np.diff(tiempo)
+
+# Graficar la función velocidad en función del tiempo
+plt.figure(figsize=(10, 6))
+plt.plot(tiempo[1:], velocidad, marker='o', linestyle='-', color='b')
+plt.title('Velocidad en función del tiempo')
+plt.xlabel('Tiempo (s)')
+plt.ylabel('Velocidad (m/s)')
+plt.grid(True)
+plt.show()
+
+# Graficar en 3D: Longitud, Tiempo, y Velocidad
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot3D(tiempo[1:], longitud[1:], velocidad, marker='o', linestyle='-', color='r')
+ax.set_title('Gráfico 3D de Velocidad, Longitud y Tiempo')
+ax.set_xlabel('Tiempo (s)')
+ax.set_ylabel('Longitud (m)')
+ax.set_zlabel('Velocidad (m/s)')
+plt.show()</code></pre>
+
+    <h2>SOLUCIONARIO CODIGO P2</h2>
+    <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Definir el vector de radios en cm (mínimo 5 datos)
+radios = np.array([1, 2, 3, 4, 5, 6])  # Ejemplo: Radios en centímetros
+
+# Definir el valor de Pi
+pi = 3.1416
+
+# Calcular el área para diferentes radios
+areas = pi * (radios ** 2)
+
+# Graficar la función Área en función de los radios en 2D
+plt.figure(figsize=(10, 6))
+plt.plot(radios, areas, marker='o', linestyle='-', color='g')
+plt.title('Área en función del Radio')
+plt.xlabel('Radio (cm)')
+plt.ylabel('Área (cm²)')
+plt.grid(True)
+plt.show()
+
+# Graficar en 3D: Radio y Área
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+# Ajustar las dimensiones de los datos para la gráfica 3D
+R, A = np.meshgrid(radios, areas)
+
+# Graficar la relación en 3D
+ax.plot3D(radios, areas, areas, marker='o', linestyle='-', color='b')
+ax.set_title('Gráfico 3D de Radio y Área')
+ax.set_xlabel('Radio (cm)')
+ax.set_ylabel('Área (cm²)')
+ax.set_zlabel('Área (cm²)')
+plt.show()</code></pre>
+  </div>
+
+  <!-- Íconos de redes sociales -->
+  <div class="social-icons">
+    <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+
 </body>
 </html>
