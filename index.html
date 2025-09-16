@@ -29,6 +29,7 @@
         background-color: #f8f9fa;
         font-family: "Poppins", sans-serif;
       }
+
       .profile-pic {
         width: 180px;
         height: 180px;
@@ -37,53 +38,83 @@
         border: 1px solid #24537f;
         box-shadow: 0px 4px 15px rgba(212, 7, 7, 0.2);
       }
+
       header {
         background: linear-gradient(to right, #0a0d11, #0dcaf0);
         color: white;
         padding: 40px 20px;
       }
+
       header h1 {
-        font-family: "Share Tech", sans-serif; /* Fuente elegante SOLO para el nombre */
-        font-size: 2.5rem;
+        font-family: "Share Tech", sans-serif;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
       }
+
       header p {
-        font-family: "Poppins", sans-serif; /* Fuente moderna para descripción */
-        font-size: 1rem;
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
       }
+
       main section {
-        font-size: 1.1rem; /* texto general */
+        font-size: 1.1rem;
       }
+
       main section h2 {
-        font-size: 1.3rem; /* títulos */
+        font-size: clamp(1rem, 4vw, 1.3rem);
         font-family: "Poppins", sans-serif;
       }
+
       main section p {
-        font-size: 1rem; /* párrafos */
+        font-size: 1rem;
       }
+
       #carouselPortfolio {
         max-width: 900px;
         margin: 0 auto;
       }
+
       #carouselPortfolio img {
-        height: 500px;
+        width: 100%;
+        height: auto;
+        max-height: 500px;
         object-fit: cover;
         object-position: top;
         border-radius: 15px;
       }
+
+      /* Ajustes responsivos para imágenes */
+      @media (max-width: 768px) {
+        #carouselPortfolio img {
+          max-height: 300px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .profile-pic {
+          width: 120px;
+          height: 120px;
+        }
+        #carouselPortfolio img {
+          max-height: 200px;
+        }
+      }
+
       footer {
         background-color: #0a0d11;
         color: white;
         text-align: center;
-        padding: 20px;
+        padding: 15px;
         margin-top: 20px;
-        font-size: 70%;
+        font-size: 0.8rem;
       }
+
       .social-icons a {
         color: white;
         font-size: 1.5rem;
         margin-right: 15px;
         transition: 0.3s;
       }
+
       .social-icons a:hover {
         color: #ffc107;
       }
@@ -107,28 +138,18 @@
         </p>
         <p class="mb-2">Monitor MINEDU | Innovador Tecnológico</p>
         <div class="social-icons">
-          <a
-            href="https://www.facebook.com/aloneluigi/"
-            target="_blank"
-            title="Facebook"
+          <a href="https://www.facebook.com/aloneluigi/" target="_blank"
             ><i class="fab fa-facebook"></i
           ></a>
           <a
             href="https://www.instagram.com/luigirodriguezmath/"
             target="_blank"
-            title="Instagram"
             ><i class="fab fa-instagram"></i
           ></a>
-          <a
-            href="https://www.youtube.com/@SOMOSLUMAT"
-            target="_blank"
-            title="YouTube"
+          <a href="https://www.youtube.com/@SOMOSLUMAT" target="_blank"
             ><i class="fab fa-youtube"></i
           ></a>
-          <a
-            href="https://www.tiktok.com/@luigirodriguez659"
-            target="_blank"
-            title="TikTok"
+          <a href="https://www.tiktok.com/@luigirodriguez659" target="_blank"
             ><i class="fab fa-tiktok"></i
           ></a>
           <a href="#"><i class="bi bi-linkedin"></i></a>
@@ -143,8 +164,8 @@
       <!-- Sección de enlaces -->
       <section class="mb-5">
         <h2 class="text-center mb-4">
-          UNETE A ESTE GRUPO EN DISCORD PARA ENVIARME TUS EJERCICIOS Y MENSAJES PARA RESOLVER EN LOS
-          LIVEs / TIKTOK O STREAMINGS EN KICK
+          UNETE A ESTE GRUPO EN DISCORD PARA ENVIARME TUS EJERCICIOS Y MENSAJES
+          PARA RESOLVER EN LOS LIVEs / TIKTOK O STREAMINGS EN KICK
         </h2>
         <div class="row text-center">
           <!-- Discord Servidor 1 -->
@@ -353,21 +374,21 @@
               <img
                 src="https://thumbs-us-east-1.myalbum.io/photo/1k0/a5ee1b98-51bb-4c6d-bade-7ec3861590a6.jpg"
                 class="d-block w-100"
-                alt="Imagen 20"
+                alt="Imagen 21"
               />
             </div>
             <div class="carousel-item">
               <img
                 src="https://thumbs-us-east-1.myalbum.io/photo/1k0/069dc046-d62c-44d3-a184-9b834bf5dc08.jpg"
                 class="d-block w-100"
-                alt="Imagen 20"
+                alt="Imagen 22"
               />
             </div>
             <div class="carousel-item">
               <img
                 src="https://thumbs-us-east-1.myalbum.io/photo/1k0/fd19f690-a404-42c4-985d-09cd2dadfeef.jpg"
                 class="d-block w-100"
-                alt="Imagen 20"
+                alt="Imagen 23"
               />
             </div>
           </div>
